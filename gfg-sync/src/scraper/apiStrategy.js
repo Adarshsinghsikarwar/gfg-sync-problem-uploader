@@ -42,16 +42,24 @@ export async function fetchViaApi(url, config) {
   }
 }
 
-// Adjust these field names once you've inspected the actual JSON shape -
-// every GFG response I've seen uses slightly different keys depending on
-// which endpoint you land on.
 function normalize(raw) {
+  const data = raw?.results ?? raw;
+  
+  let tags = [];
+  if (Array.isArray(data?.tags)) {
+    tags = data.tags;
+  } else if (data?.tags && typeof data.tags === 'object') {
+    tags = [...(data.tags.topic_tags || []), ...(data.tags.company_tags || [])];
+  } else if (Array.isArray(data?.topic_tags)) {
+    tags = data.topic_tags;
+  }
+
   return {
-    title: raw?.problem_name ?? raw?.title ?? null,
-    difficulty: raw?.difficulty ?? null,
-    tags: raw?.tags ?? raw?.topic_tags ?? [],
-    statement: raw?.problem_statement ?? raw?.question ?? null,
-    examples: raw?.examples ?? [],
-    constraints: raw?.constraints ?? [],
+    title: data?.problem_name ?? data?.title ?? null,
+    difficulty: data?.difficulty ?? data?.problem_level_text ?? null,
+    tags: tags,
+    statement: data?.problem_statement ?? data?.problem_question ?? data?.question ?? null,
+    examples: data?.examples ?? [],
+    constraints: data?.constraints ?? [],
   };
 }

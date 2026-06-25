@@ -4,5 +4,12 @@
     "solution": "./solutions/kadanes-algorithm.java",
     "output": "docs\\medium\\kadanes-algorithm-1587115620.md",
     "lang": "java"
+  },
+  "maximum-sub-array5443": {
+    "url": "https://www.geeksforgeeks.org/problems/maximum-sub-array5443/1",
+    "solution": "./solutions/MaximumSubArray.java",
+    "output": "docs\\medium\\maximum-sub-array5443.md",
+    "lang": "java",
+    "notes": "O(n) time, O(1) space - tracking positive subarray maximum sum with longest length and smallest starting index."
   }
 }

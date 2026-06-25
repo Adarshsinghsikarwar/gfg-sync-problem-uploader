@@ -1,6 +1,6 @@
 {
   "_comment": "Open a GFG problem page, DevTools > Network > filter XHR/Fetch. Find the request that returns the problem JSON (title, statement, examples). Copy its URL pattern here, replacing the slug with {slug}.",
-  "apiEndpointTemplate": "",
+  "apiEndpointTemplate": "https://practiceapi.geeksforgeeks.org/api/v1/problems/{slug}/",
   "outputDir": "./docs",
   "solutionsDir": "./solutions"
 }
